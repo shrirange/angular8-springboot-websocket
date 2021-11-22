@@ -1,3 +1,6 @@
+Code is from the website below and not my content.
+https://www.javaguides.net/2019/06/spring-boot-angular-8-websocket-example-tutorial.html
+
 # Angular8SpringbootWebsocket
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.

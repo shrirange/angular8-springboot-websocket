@@ -10,8 +10,10 @@ export class AppComponent {
   title = 'angular8-springboot-websocket';
 
   webSocketAPI: WebSocketAPI;
-  greeting: any;
+  greeting: string;
+  privategreeting: string;
   name: string;
+  privatename: string;
   ngOnInit() {
     this.webSocketAPI = new WebSocketAPI(this);
   }
@@ -28,7 +30,17 @@ export class AppComponent {
     this.webSocketAPI._send(this.name);
   }
 
+  sendPrivateMessage(){
+    this.webSocketAPI._privatesend(this.privatename);
+  }
+
   handleMessage(message){
+    console.log(message);
     this.greeting = message;
+  }
+
+  handlePrivateMessage(privatemessage){
+    console.log(privatemessage);
+    this.privategreeting = privatemessage;
   }
 }

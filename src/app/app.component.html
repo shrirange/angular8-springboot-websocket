@@ -6,8 +6,11 @@
 
     <div class="row">
         <div class="col-md-12">
-           {{ greeting }}
+          Global Message {{ greeting }}
         </div>
+        <div class="col-md-12">
+          Private Message {{ privategreeting }}
+         </div>
     </div>
     
   <div class="row">
@@ -30,8 +33,15 @@
               <button (click)="sendMessage()" class="btn btn-default" type="submit">Send</button>
           </form>
       </div>
-
-      <p> {{ greeting }}</p>
+      <div class="col-md-6">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="name">What is your name?</label>
+                <input type="text" [(ngModel)]="privatename" class="form-control" name="privatename"> <br>
+            </div>
+            <button (click)="sendPrivateMessage()" class="btn btn-default" type="submit">Send</button>
+        </form>
+    </div>
   </div>
  
 </div>

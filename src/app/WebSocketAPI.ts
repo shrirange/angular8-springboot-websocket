@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 export class WebSocketAPI {
     webSocketEndPoint: string = 'http://localhost:8080/ws';
     topic: string = "/topic/greetings";
+    queue: string = "/user/queue/notify"
     stompClient: any;
     appComponent: AppComponent;
     constructor(appComponent: AppComponent){
@@ -18,6 +19,9 @@ export class WebSocketAPI {
         _this.stompClient.connect({}, function (frame) {
             _this.stompClient.subscribe(_this.topic, function (sdkEvent) {
                 _this.onMessageReceived(sdkEvent);
+            });
+            _this.stompClient.subscribe(_this.queue, function (sdkEvent) {
+                _this.onPrivateMessageReceived(sdkEvent);
             });
             //_this.stompClient.reconnect_delay = 2000;
         }, this.errorCallBack);
@@ -47,8 +51,18 @@ export class WebSocketAPI {
         this.stompClient.send("/app/hello", {}, JSON.stringify(message));
     }
 
+    _privatesend(message) {
+        console.log("calling logout api via web socket");
+        this.stompClient.send("/app/privatehello", {}, JSON.stringify(message));
+    }
+
     onMessageReceived(message) {
         console.log("Message Recieved from Server :: " + message);
         this.appComponent.handleMessage(JSON.stringify(message.body));
+    }
+
+    onPrivateMessageReceived(message) {
+        console.log("Private Message Recieved from Server :: " + message);
+        this.appComponent.handlePrivateMessage(JSON.stringify(message.body));
     }
 }

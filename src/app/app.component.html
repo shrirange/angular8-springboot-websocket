@@ -11,6 +11,10 @@
         <div class="col-md-12">
           Private Message {{ privategreeting }}
          </div>
+         <div class="col-md-12">
+            User Message {{ usergreeting }}
+           </div>
+         
     </div>
     
   <div class="row">
@@ -27,7 +31,7 @@
       <div class="col-md-6">
           <form class="form-inline">
               <div class="form-group">
-                  <label for="name">What is your name?</label>
+                  <label for="name">What is your global message?</label>
                   <input type="text" [(ngModel)]="name" class="form-control" name="name"> <br>
               </div>
               <button (click)="sendMessage()" class="btn btn-default" type="submit">Send</button>
@@ -36,10 +40,19 @@
       <div class="col-md-6">
         <form class="form-inline">
             <div class="form-group">
-                <label for="name">What is your name?</label>
+                <label for="name">What is your private message?</label>
                 <input type="text" [(ngModel)]="privatename" class="form-control" name="privatename"> <br>
             </div>
             <button (click)="sendPrivateMessage()" class="btn btn-default" type="submit">Send</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="name">What is your user message?</label>
+                <input type="text" [(ngModel)]="username" class="form-control" name="username"> <br>
+            </div>
+            <button (click)="sendUserMessage()" class="btn btn-default" type="submit">Send</button>
         </form>
     </div>
   </div>

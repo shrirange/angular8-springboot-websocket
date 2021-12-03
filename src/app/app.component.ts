@@ -12,8 +12,10 @@ export class AppComponent {
   webSocketAPI: WebSocketAPI;
   greeting: string;
   privategreeting: string;
+  usergreeting:string;
   name: string;
   privatename: string;
+  username: string;
   ngOnInit() {
     this.webSocketAPI = new WebSocketAPI(this);
   }
@@ -34,6 +36,10 @@ export class AppComponent {
     this.webSocketAPI._privatesend(this.privatename);
   }
 
+  sendUserMessage(){
+    this.webSocketAPI._usersend(this.username);
+  }
+
   handleMessage(message){
     console.log(message);
     this.greeting = message;
@@ -42,5 +48,10 @@ export class AppComponent {
   handlePrivateMessage(privatemessage){
     console.log(privatemessage);
     this.privategreeting = privatemessage;
+  }
+
+  handleUserMessage(usermessage){
+    console.log(usermessage);
+    this.usergreeting = usermessage;
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { HostListener, Component } from '@angular/core';
 import { WebSocketAPI } from './WebSocketAPI';
 
 @Component({
@@ -9,6 +9,11 @@ import { WebSocketAPI } from './WebSocketAPI';
 export class AppComponent {
   title = 'angular8-springboot-websocket';
 
+  @HostListener('window:beforeunload') connecttoSocket() {
+    console.log("refresh");
+    this.disconnect();
+  }
+
   webSocketAPI: WebSocketAPI;
   greeting: string;
   privategreeting: string;
@@ -18,6 +23,7 @@ export class AppComponent {
   username: string;
   ngOnInit() {
     this.webSocketAPI = new WebSocketAPI(this);
+    this.connect();
   }
 
   connect(){
